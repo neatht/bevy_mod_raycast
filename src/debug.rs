@@ -100,7 +100,7 @@ fn spawn_cursor<T: 'static>(
         .with_children(|parent| {
             let mut tail_transform = Transform::from_translation(Vec3::new(
                 0.0,
-                (cube_size * cube_tail_scale) / 2.0,
+                -(cube_size * cube_tail_scale) / 2.0,
                 0.0,
             ));
             tail_transform.scale *= Vec3::from([1.0, cube_tail_scale, 1.0]);
