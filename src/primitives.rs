@@ -201,7 +201,7 @@ pub mod rays {
             let viewport_size = viewport_max - viewport_min;
             let adj_cursor_pos =
                 cursor_pos_screen - Vec2::new(viewport_min.x, screen_size.y - viewport_max.y);
-
+            println!("test");
             let projection = camera.projection_matrix();
             let far_ndc = projection.project_point3(Vec3::NEG_Z).z;
             let near_ndc = projection.project_point3(Vec3::Z).z;
