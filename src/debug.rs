@@ -88,7 +88,7 @@ fn spawn_cursor<T: 'static>(
     commands
         .entity(entity)
         // cursor
-        .insert_bundle(PbrBundle {
+        .insert(PbrBundle {
             mesh: meshes.add(Mesh::from(shape::Icosphere {
                 subdivisions: 4,
                 radius: ball_size,
@@ -103,11 +103,11 @@ fn spawn_cursor<T: 'static>(
                 (cube_size * cube_tail_scale) / 2.0,
                 0.0,
             ));
-            tail_transform.apply_non_uniform_scale(Vec3::from([1.0, cube_tail_scale, 1.0]));
+            tail_transform.scale *= Vec3::from([1.0, cube_tail_scale, 1.0]);
 
             // child cube
             parent
-                .spawn_bundle(PbrBundle {
+                .spawn(PbrBundle {
                     mesh: meshes.add(Mesh::from(shape::Cube { size: cube_size })),
                     material: debug_material.clone(),
                     transform: tail_transform,
