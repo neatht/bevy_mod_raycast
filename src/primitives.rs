@@ -201,11 +201,10 @@ pub mod rays {
             let viewport_size = viewport_max - viewport_min;
             let adj_cursor_pos =
                 cursor_pos_screen - Vec2::new(viewport_min.x, screen_size.y - viewport_max.y);
-            println!("test");
             let projection = camera.projection_matrix();
             let far_ndc = projection.project_point3(Vec3::NEG_Z).z;
             let near_ndc = projection.project_point3(Vec3::Z).z;
-            let cursor_ndc = (cursor_pos_screen / viewport_size) * 2.0 - Vec2::ONE;
+            let cursor_ndc = ((cursor_pos_screen / viewport_size) * 2.0 - Vec2::ONE) * Vec2::from([1.0, -1.0]);
             let ndc_to_world: Mat4 = view * projection.inverse();
             let near = ndc_to_world.project_point3(cursor_ndc.extend(near_ndc));
             let far = ndc_to_world.project_point3(cursor_ndc.extend(far_ndc));
